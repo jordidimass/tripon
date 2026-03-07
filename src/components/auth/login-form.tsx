@@ -51,7 +51,7 @@ export function LoginForm({ nextPath }: { nextPath?: string }) {
 
   return (
     <div className="mx-auto grid w-full max-w-md gap-4">
-      <Card>
+      <Card className="border-white/15 bg-black/35 text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl">
         <CardHeader>
           <CardTitle>Iniciar sesion</CardTitle>
         </CardHeader>
@@ -78,7 +78,7 @@ export function LoginForm({ nextPath }: { nextPath?: string }) {
               />
             </div>
 
-            {error ? <p className="text-sm text-red-600">{error}</p> : null}
+            {error ? <p className="text-sm text-red-300">{error}</p> : null}
 
             <Button type="submit" disabled={loading}>
               {loading ? "Ingresando..." : "Entrar"}
@@ -87,18 +87,18 @@ export function LoginForm({ nextPath }: { nextPath?: string }) {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="border-white/15 bg-black/30 text-white/90 backdrop-blur-xl">
         <CardHeader>
           <CardTitle>Usuarios quemados</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-2 text-sm">
           <div>
             <div className="font-medium">Administrador</div>
-            <div className="text-muted-foreground">admin@tripon.com / Admin123*</div>
+            <div className="text-white/65">admin@tripon.com / Admin123*</div>
           </div>
           <div>
             <div className="font-medium">Usuario</div>
-            <div className="text-muted-foreground">user@tripon.com / User123*</div>
+            <div className="text-white/65">user@tripon.com / User123*</div>
           </div>
         </CardContent>
       </Card>

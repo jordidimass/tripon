@@ -1,0 +1,24 @@
+{
+  "name": "@tripon/search-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file=.env --watch --import tsx src/server.ts",
+    "start": "node --env-file=.env --import tsx src/server.ts",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.11",
+    "@huggingface/inference": "^4.13.15",
+    "@tripon/catalog": "workspace:*",
+    "@tripon/search-core": "workspace:*",
+    "hono": "^4.12.5",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.5",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

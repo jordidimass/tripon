@@ -112,15 +112,16 @@ export default function AdminAutosPage() {
   }
 
   return (
-    <div className="grid gap-6">
+    <div className="relative mx-auto grid w-full max-w-6xl gap-6 overflow-hidden px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(1000px_circle_at_10%_0%,rgba(255,255,255,0.08),transparent_45%),radial-gradient(850px_circle_at_95%_0%,rgba(126,91,255,0.16),transparent_42%)]" />
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Administrar Inventario</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="text-2xl font-semibold tracking-tight text-white">Administrar Inventario</h1>
+        <p className="text-sm text-white/70">
           CRUD de autos: agrega, edita y elimina registros.
         </p>
       </div>
 
-      <Card>
+      <Card className="border-white/15 bg-black/30 text-white backdrop-blur-xl">
         <CardHeader>
           <CardTitle>{title}</CardTitle>
         </CardHeader>
@@ -261,7 +262,7 @@ export default function AdminAutosPage() {
               />
             </Field>
 
-            {error ? <p className="text-sm text-red-600">{error}</p> : null}
+            {error ? <p className="text-sm text-red-300">{error}</p> : null}
 
             <div className="flex flex-wrap gap-2">
               <Button type="submit" disabled={saving}>
@@ -275,25 +276,25 @@ export default function AdminAutosPage() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="border-white/15 bg-black/30 text-white backdrop-blur-xl">
         <CardHeader>
           <CardTitle>Autos registrados</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-3">
-          {loading ? <p className="text-sm text-muted-foreground">Cargando autos...</p> : null}
+          {loading ? <p className="text-sm text-white/70">Cargando autos...</p> : null}
           {!loading && autos.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No hay autos en el inventario.</p>
+            <p className="text-sm text-white/70">No hay autos en el inventario.</p>
           ) : null}
           {autos.map((auto) => (
             <div
               key={auto.id}
-              className="flex flex-wrap items-center justify-between gap-3 rounded-xl border p-3"
+              className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-white/15 bg-black/30 p-3"
             >
               <div>
                 <div className="text-sm font-medium">
                   #{auto.id} {auto.vehiculo.anio} {auto.vehiculo.marca} {auto.vehiculo.modelo}
                 </div>
-                <div className="text-xs text-muted-foreground">{auto.titulo}</div>
+                <div className="text-xs text-white/70">{auto.titulo}</div>
               </div>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={() => onEdit(auto)}>

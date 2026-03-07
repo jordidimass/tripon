@@ -68,28 +68,29 @@ export default function ProfilePage() {
   }, [purchases])
 
   return (
-    <div className="grid gap-6">
+    <div className="relative mx-auto grid w-full max-w-6xl gap-6 overflow-hidden px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(900px_circle_at_10%_0%,rgba(255,255,255,0.08),transparent_45%),radial-gradient(850px_circle_at_95%_0%,rgba(126,91,255,0.16),transparent_42%)]" />
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Mi perfil</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="text-2xl font-semibold tracking-tight text-white">Mi perfil</h1>
+        <p className="text-sm text-white/70">
           Aqui ves tu historial de compra y los carros adquiridos.
         </p>
       </div>
 
-      {loading ? <p className="text-sm text-muted-foreground">Cargando perfil...</p> : null}
+      {loading ? <p className="text-sm text-white/70">Cargando perfil...</p> : null}
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
 
       {!loading && !error && user ? (
-        <Card>
+        <Card className="border-white/15 bg-black/30 text-white backdrop-blur-xl">
           <CardHeader>
             <CardTitle>{user.displayName}</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-1 text-sm">
-            <div className="text-muted-foreground">{user.username}</div>
-            <div className="text-muted-foreground">Rol: {user.role}</div>
-            <div className="text-muted-foreground">Compras realizadas: {purchases.length}</div>
+            <div className="text-white/70">{user.username}</div>
+            <div className="text-white/70">Rol: {user.role}</div>
+            <div className="text-white/70">Compras realizadas: {purchases.length}</div>
             {lastPurchase ? (
-              <div className="text-muted-foreground">
+              <div className="text-white/70">
                 Ultima compra: {formatMoney(lastPurchase.amount, lastPurchase.currency)}
               </div>
             ) : null}
@@ -98,14 +99,14 @@ export default function ProfilePage() {
       ) : null}
 
       {!loading && !error && cars.length === 0 ? (
-        <Card>
+        <Card className="border-white/15 bg-black/30 text-white backdrop-blur-xl">
           <CardHeader>
             <CardTitle>Sin compras todavia</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-muted-foreground">
+          <CardContent className="text-sm text-white/70">
             Aun no has comprado un carro. Ve al catalogo y finaliza un pago simulado.
             <div className="mt-3">
-              <Link href="/cars" className="underline">
+              <Link href="/cars" className="underline text-white">
                 Ir a buscar autos
               </Link>
             </div>

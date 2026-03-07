@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Anton } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
 import "./globals.css";
 
 import { cn } from "@/lib/utils";
+import { GlobalStickySearch } from "@/components/car/global-sticky-search";
 
 const geistSans = Geist({
   variable: "--font-sans",
@@ -43,7 +46,25 @@ export default function RootLayout({
           anton.variable
         )}
       >
-        {children}
+        <div className="relative min-h-dvh">
+          <Link
+            href="/"
+            className="fixed left-4 top-3 z-[60] inline-flex items-center"
+            aria-label="Ir al inicio"
+          >
+            <Image
+              src="/logo.svg"
+              alt="Tripon"
+              width={176}
+              height={52}
+              className="h-10 w-[176px] sm:h-11"
+            />
+          </Link>
+          <GlobalStickySearch />
+          <div className="pt-3">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );

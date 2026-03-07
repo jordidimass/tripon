@@ -207,7 +207,7 @@ export function CarsFilters({ filters }: { filters: CarFilters }) {
   return (
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className="text-sm font-medium">Filters</div>
+        <div className="text-sm font-medium text-white">Filters</div>
         <div className="flex items-center gap-2">
           <Button asChild variant="ghost" size="sm">
             <a href={pathname}>Refresh</a>
@@ -243,7 +243,7 @@ export function CarsFilters({ filters }: { filters: CarFilters }) {
       </div>
 
       {!hasAnyParams ? null : (
-        <div className="text-xs text-muted-foreground">
+        <div className="text-xs text-white/70">
           Tip: share this URL to keep the same filters.
         </div>
       )}

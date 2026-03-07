@@ -15,17 +15,16 @@ type SessionUser = {
 export function AuthControls() {
   const router = useRouter()
   const [user, setUser] = useState<SessionUser | null>(null)
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const load = async () => {
-      setLoading(true)
       try {
         const res = await fetch("/api/auth/me", { cache: "no-store" })
         const data = (await res.json()) as { user?: SessionUser | null }
         setUser(data.user ?? null)
+      } catch {
+        setUser(null)
       } finally {
-        setLoading(false)
       }
     }
 
@@ -37,10 +36,6 @@ export function AuthControls() {
     setUser(null)
     router.push("/login")
     router.refresh()
-  }
-
-  if (loading) {
-    return <div className="text-xs text-muted-foreground">...</div>
   }
 
   if (!user) {

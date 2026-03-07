@@ -22,26 +22,27 @@ export default async function CheckoutPage({ params }: { params: Promise<{ id: s
   if (!car) notFound()
 
   return (
-    <div className="mx-auto grid w-full max-w-2xl gap-6">
-      <div className="text-sm text-muted-foreground">
+    <div className="relative mx-auto grid w-full max-w-2xl gap-6 overflow-hidden px-4 py-6 sm:px-6 sm:py-8">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(900px_circle_at_10%_0%,rgba(255,255,255,0.08),transparent_45%),radial-gradient(700px_circle_at_100%_0%,rgba(126,91,255,0.2),transparent_40%)]" />
+      <div className="text-sm text-white/70">
         <Link className="hover:underline" href={`/cars/${car.id}`}>
           Volver al detalle
         </Link>
       </div>
 
-      <Card>
+      <Card className="border-white/15 bg-black/30 text-white backdrop-blur-xl">
         <CardHeader>
           <CardTitle>Pago de {car.vehiculo.marca} {car.vehiculo.modelo}</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
-          <div className="rounded-xl border p-3 text-sm">
+          <div className="rounded-xl border border-white/15 bg-black/30 p-3 text-sm">
             <div className="font-medium">
               {car.vehiculo.anio} {car.titulo}
             </div>
-            <div className="text-muted-foreground">
+            <div className="text-white/70">
               Total: {formatMoney(car.precio.monto, car.precio.moneda)}
             </div>
-            <div className="text-xs text-muted-foreground">Pago simulado para demo.</div>
+            <div className="text-xs text-white/60">Pago simulado para demo.</div>
           </div>
 
           <FakePaymentForm
