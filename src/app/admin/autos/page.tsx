@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { parseJsonSafe } from "@/lib/http-client"
 
 const fuelOptions: AdminAutoFormData["combustible"][] = ["Gasolina", "Diesel", "Hybrid", "Electric"]
 const transmissionOptions: AdminAutoFormData["transmision"][] = ["Automatica", "Mecanica", "CVT"]
@@ -37,9 +38,9 @@ export default function AdminAutosPage() {
 
     try {
       const res = await fetch("/api/autos", { cache: "no-store" })
-      const data = (await res.json()) as { autos?: Auto[]; error?: string }
-      if (!res.ok) throw new Error(data.error ?? "No se pudo cargar inventario.")
-      setAutos(data.autos ?? [])
+      const data = await parseJsonSafe<{ autos?: Auto[]; error?: string }>(res)
+      if (!res.ok) throw new Error(data?.error ?? "No se pudo cargar inventario.")
+      setAutos(data?.autos ?? [])
     } catch (e) {
       setError(e instanceof Error ? e.message : "No se pudo cargar inventario.")
     } finally {
@@ -76,8 +77,8 @@ export default function AdminAutosPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       })
-      const data = (await res.json()) as { error?: string }
-      if (!res.ok) throw new Error(data.error ?? "No se pudo guardar el auto.")
+      const data = await parseJsonSafe<{ error?: string }>(res)
+      if (!res.ok) throw new Error(data?.error ?? "No se pudo guardar el auto.")
 
       await loadAutos()
       resetForm()
@@ -102,8 +103,8 @@ export default function AdminAutosPage() {
     setError("")
     try {
       const res = await fetch(`/api/autos/${id}`, { method: "DELETE" })
-      const data = (await res.json()) as { error?: string }
-      if (!res.ok) throw new Error(data.error ?? "No se pudo eliminar el auto.")
+      const data = await parseJsonSafe<{ error?: string }>(res)
+      if (!res.ok) throw new Error(data?.error ?? "No se pudo eliminar el auto.")
       await loadAutos()
       if (editingId === id) resetForm()
     } catch (e) {

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { appendPurchase } from "@/lib/client-purchases"
+import { parseJsonSafe } from "@/lib/http-client"
 
 type Props = {
   username: string
@@ -41,9 +42,9 @@ export function FakePaymentForm({ username, carId, amount, currency }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ carId }),
       })
-      const purchaseData = (await purchaseRes.json()) as { error?: string }
+      const purchaseData = await parseJsonSafe<{ error?: string }>(purchaseRes)
       if (!purchaseRes.ok) {
-        throw new Error(purchaseData.error ?? "No se pudo completar la compra.")
+        throw new Error(purchaseData?.error ?? "No se pudo completar la compra.")
       }
 
       appendPurchase({

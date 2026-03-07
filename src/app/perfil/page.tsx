@@ -7,6 +7,7 @@ import { CarCard } from "@/components/car/car-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { Auto } from "@/data/cars"
 import { formatMoney } from "@/lib/format"
+import { parseJsonSafe } from "@/lib/http-client"
 import { readPurchases, type PurchaseRecord } from "@/lib/client-purchases"
 
 type SessionUser = {
@@ -28,8 +29,8 @@ export default function ProfilePage() {
       setError("")
       try {
         const meRes = await fetch("/api/auth/me", { cache: "no-store" })
-        const meData = (await meRes.json()) as { user?: SessionUser | null }
-        const currentUser = meData.user ?? null
+        const meData = await parseJsonSafe<{ user?: SessionUser | null }>(meRes)
+        const currentUser = meData?.user ?? null
         setUser(currentUser)
         if (!currentUser) {
           setCars([])
@@ -46,11 +47,11 @@ export default function ProfilePage() {
         }
 
         const autosRes = await fetch("/api/autos", { cache: "no-store" })
-        const autosData = (await autosRes.json()) as { autos?: Auto[]; error?: string }
-        if (!autosRes.ok) throw new Error(autosData.error ?? "No se pudo cargar autos.")
+        const autosData = await parseJsonSafe<{ autos?: Auto[]; error?: string }>(autosRes)
+        if (!autosRes.ok) throw new Error(autosData?.error ?? "No se pudo cargar autos.")
 
         const ids = new Set(userPurchases.map((p) => p.carId))
-        const boughtCars = (autosData.autos ?? []).filter((auto) => ids.has(auto.id))
+        const boughtCars = (autosData?.autos ?? []).filter((auto) => ids.has(auto.id))
         setCars(boughtCars)
       } catch (e) {
         setError(e instanceof Error ? e.message : "No se pudo cargar tu perfil.")

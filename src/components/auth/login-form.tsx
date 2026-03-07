@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { parseJsonSafe } from "@/lib/http-client"
 
 type LoginResponse = {
   error?: string
@@ -33,9 +34,9 @@ export function LoginForm({ nextPath }: { nextPath?: string }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       })
-      const data = (await res.json()) as LoginResponse
-      if (!res.ok || !data.user) {
-        throw new Error(data.error ?? "No se pudo iniciar sesion.")
+      const data = await parseJsonSafe<LoginResponse>(res)
+      if (!res.ok || !data || !data.user) {
+        throw new Error(data?.error ?? "No se pudo iniciar sesion.")
       }
 
       const fallback = data.user.role === "admin" ? "/admin/autos" : "/perfil"

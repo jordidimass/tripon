@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
+import { parseJsonSafe } from "@/lib/http-client"
 
 type SessionUser = {
   username: string
@@ -22,8 +23,10 @@ export function AuthControls() {
       setLoading(true)
       try {
         const res = await fetch("/api/auth/me", { cache: "no-store" })
-        const data = (await res.json()) as { user?: SessionUser | null }
-        setUser(data.user ?? null)
+        const data = await parseJsonSafe<{ user?: SessionUser | null }>(res)
+        setUser(data?.user ?? null)
+      } catch {
+        setUser(null)
       } finally {
         setLoading(false)
       }
