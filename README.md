@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tripon
 
-## Getting Started
+Monorepo para el MVP de Tripon con búsqueda híbrida de carros.
 
-First, run the development server:
+## Estructura
+
+- `apps/web`: frontend en Next.js
+- `apps/search-api`: servicio separado para búsqueda keyword + lenguaje natural
+- `packages/catalog`: catálogo compartido y normalización del inventario
+- `packages/search-core`: parsing de consultas, filtros e integración del ranking híbrido
+
+## Requisitos
+
+- Node.js 22+
+- pnpm 10+
+
+## Instalación
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Variables de entorno
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### `apps/web/.env.local`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+SEARCH_API_URL=http://127.0.0.1:4000
+```
 
-## Learn More
+### `apps/search-api/.env`
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+PORT=4000
+HF_API_TOKEN=hf_xxx
+HF_EMBEDDINGS_MODEL=intfloat/multilingual-e5-base
+HF_QUERY_PARSER_MODEL=Qwen/Qwen2.5-1.5B-Instruct
+SEARCH_SEMANTIC_WEIGHT=0.45
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Si `HF_API_TOKEN` no está configurado, el buscador sigue funcionando con parsing por reglas y ranking keyword.
+- Si el token está configurado, el `search-api` añade embeddings con `intfloat/multilingual-e5-base`.
+- Si `HF_QUERY_PARSER_MODEL` está configurado, se habilita un fallback opcional con `Qwen/Qwen2.5-1.5B-Instruct` para consultas naturales más ambiguas.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Desarrollo
 
-## Deploy on Vercel
+Levantar frontend y servicio de búsqueda:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Levantar solo el frontend:
+
+```bash
+pnpm dev:web
+```
+
+Levantar solo el servicio de búsqueda:
+
+```bash
+pnpm dev:search
+```
+
+## Validación
+
+```bash
+pnpm typecheck
+pnpm lint
+pnpm build
+```
+
+## Despliegue recomendado
+
+- `apps/web` en Vercel
+- `apps/search-api` en Railway, Render o Fly.io
+- Hugging Face Inference o Endpoints para embeddings en el MVP
+
+La inferencia no corre dentro de Next.js. El frontend consulta al `search-api`, y ese servicio es el que habla con Hugging Face para embeddings y futuras mejoras de reranking.

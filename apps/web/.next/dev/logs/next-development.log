@@ -1,0 +1,4 @@
+[00:00:00.882] Server  LOG     ✓ Ready in 642ms
+[00:00:02.532] Server  ERROR   TypeError: fetch failed
+[00:00:02.544] Server  ERROR   TypeError: fetch failed
+[00:00:02.719] Server  ERROR   TypeError: fetch failed
