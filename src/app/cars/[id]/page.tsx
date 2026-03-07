@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -9,10 +8,10 @@ import { Separator } from "@/components/ui/separator"
 import { getCarById } from "@/lib/cars"
 import { formatCurrency, formatNumber } from "@/lib/format"
 
-export default function CarViewPage({ params }: { params: { id: string } }) {
-  const car = getCarById(params.id)
+export default async function CarViewPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const car = getCarById(id)
   if (!car) notFound()
-
   return (
     <div className="grid gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -51,13 +50,12 @@ export default function CarViewPage({ params }: { params: { id: string } }) {
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
         <Card className="overflow-hidden">
           <div className="relative aspect-[16/9] w-full bg-muted">
-            <Image
+            <img
               src={car.foto_url}
               alt={`${car.vehiculo.anio} ${car.vehiculo.marca} ${car.vehiculo.modelo}`}
-              fill
-              sizes="(max-width: 1024px) 100vw, 60vw"
-              className="object-cover"
-              priority
+              width={1000}
+              height={562}
+              className="object-cover w-full h-full"
             />
           </div>
           <CardContent className="grid gap-4">
