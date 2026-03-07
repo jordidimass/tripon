@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server"
 import { NextResponse } from "next/server"
 
-import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+import { decodeSession, SESSION_COOKIE } from "./apps/web/src/lib/auth"
 
 function withNext(pathname: string, request: NextRequest) {
   const loginUrl = new URL("/login", request.url)

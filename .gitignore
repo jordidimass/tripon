@@ -14,8 +14,11 @@
 /coverage
 
 # next.js
-/.next/
+.next/
 /out/
+
+# turbopack / turbo
+.turbo/
 
 # production
 /build
