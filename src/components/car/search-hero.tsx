@@ -14,7 +14,18 @@ import {
 } from "@/components/ui/select"
 import { buildCarsResultsHref } from "@/lib/car-filters"
 
-const MAKES = ["Any", "Audi", "BMW", "Ford", "Honda", "Kia", "Mazda", "Mercedes", "Tesla", "Toyota", "Volkswagen"]
+const MAKES = [
+  "Any",
+  "Toyota",
+  "Honda",
+  "Mazda",
+  "Kia",
+  "Hyundai",
+  "Nissan",
+  "Ford",
+  "Chevrolet",
+  "Mitsubishi",
+]
 
 export function SearchHero() {
   const router = useRouter()

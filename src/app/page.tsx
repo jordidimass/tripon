@@ -3,9 +3,13 @@ import Link from "next/link"
 import { CarCard } from "@/components/car/car-card"
 import { SearchHero } from "@/components/car/search-hero"
 import { Button } from "@/components/ui/button"
-import { autos } from "@/data/cars"
+import { listAutos } from "@/lib/inventory"
 
-export default function HomePage() {
+export const dynamic = "force-dynamic"
+
+export default async function HomePage() {
+  const autos = await listAutos({})
+
   return (
     <div className="grid gap-10">
       <section className="relative overflow-hidden rounded-3xl border bg-card/60 p-8 shadow-sm ring-1 ring-foreground/10 sm:p-12">

@@ -5,12 +5,15 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
+import { AcquireCarButton } from "@/components/car/acquire-car-button"
 import { formatMoney, formatNumber } from "@/lib/format"
 import { getAutoById } from "@/lib/inventory"
 
+export const dynamic = "force-dynamic"
+
 export default async function CarViewPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const car = getAutoById(id)
+  const car = await getAutoById(id)
   if (!car) notFound()
   return (
     <div className="grid gap-6">
@@ -121,6 +124,7 @@ export default async function CarViewPage({ params }: { params: Promise<{ id: st
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-2">
+            <AcquireCarButton carId={car.id} />
             <Button className="w-full">Request info</Button>
             <Button className="w-full" variant="outline">
               Schedule test drive
