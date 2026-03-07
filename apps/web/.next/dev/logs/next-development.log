@@ -636,3 +636,671 @@ https://nextjs.org/docs/messages/module-not-found
 
 
 [00:36:45.444] Server  LOG     ✓ Compiled in 244ms
+[00:38:24.413] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:38:24.573] Browser ERROR   ./apps/web/src/app/page.tsx:12:1
+Parsing ecmascript source code failed
+  10 |   const facets = getCatalogFacets()
+  11 |
+> 12 | =======
+     | ^^^^^^^
+  13 | import { listAutos } from "@/lib/inventory"
+  14 |
+  15 | export const dynamic = "force-dynamic"
+
+Merge conflict marker encountered.
+[00:38:24.574] Browser ERROR   ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:38:24.574] Browser ERROR   ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:38:24.574] Browser ERROR   ./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[00:38:24.721] Server  ERROR   ⨯ ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+
+[00:38:24.834] Server  ERROR   ⨯ ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+
+[00:38:25.193] Browser ERROR   ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:38:25.193] Browser ERROR   ./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[00:38:25.200] Browser ERROR   ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:38:25.200] Browser ERROR   ./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[00:38:25.213] Server  ERROR   ⨯ ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+
+[00:38:25.255] Server  ERROR   ⨯ ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+
+[00:38:25.269] Server  ERROR   ⨯ ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+
+[00:38:25.775] Server  ERROR   ⨯ ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+
+[00:38:26.337] Browser ERROR   uncaughtError: Error: ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:38:26.591] Browser ERROR   ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:38:26.591] Browser ERROR   ./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[00:38:26.737] Browser ERROR   ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:38:26.737] Browser ERROR   ./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[00:39:51.760] Server  ERROR   ⨯ ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+
+[00:39:52.222] Browser ERROR   uncaughtError: Error: ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:39:52.393] Browser ERROR   ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:39:52.393] Browser ERROR   ./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[00:39:52.393] Browser ERROR   ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:39:52.393] Browser ERROR   ./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[00:39:53.244] Server  ERROR   ⨯ ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+
+./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+
+[00:39:53.541] Browser ERROR   uncaughtError: Error: ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:39:53.732] Browser ERROR   ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:39:53.732] Browser ERROR   ./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+[00:39:53.732] Browser ERROR   ./apps/web/src/components/site-header.tsx:4:1
+Module not found: Can't resolve '@/components/auth/auth-controls'
+  2 | import { cookies } from "next/headers"
+  3 |
+> 4 | import { AuthControls } from "@/components/auth/auth-controls"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
+  6 | import { Button } from "@/components/ui/button"
+  7 |
+
+Import map: aliased to relative './src/components/auth/auth-controls' inside of [project]/apps/web
+
+Import trace:
+  Server Component:
+    ./apps/web/src/components/site-header.tsx
+    ./apps/web/src/app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+[00:39:53.732] Browser ERROR   ./apps/web/src/app/page.tsx:6:1
+Export listAutos doesn't exist in target module
+  4 | import { SearchHero } from "@/components/car/search-hero"
+  5 | import { Button } from "@/components/ui/button"
+> 6 | import { listAutos } from "@/lib/inventory"
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const dynamic = "force-dynamic"
+  9 |
+
+The export listAutos was not found in module [project]/apps/web/src/lib/inventory.ts [app-rsc] (ecmascript).
+Did you mean to import getAutoById?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
