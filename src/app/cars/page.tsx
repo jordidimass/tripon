@@ -5,13 +5,16 @@ import { listAutos } from "@/lib/inventory"
 
 type SearchParams = { [key: string]: string | string[] | undefined }
 
-export default function CarsResultsPage({
+export const dynamic = "force-dynamic"
+
+export default async function CarsResultsPage({
   searchParams,
 }: {
-  searchParams: SearchParams
+  searchParams: Promise<SearchParams>
 }) {
-  const filters = parseCarFilters(searchParams)
-  const cars = listAutos(filters)
+  const resolvedSearchParams = await searchParams
+  const filters = parseCarFilters(resolvedSearchParams)
+  const cars = await listAutos(filters)
 
   return (
     <div className="grid gap-6">
