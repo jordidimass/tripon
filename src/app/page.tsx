@@ -1,4 +1,9 @@
+import Link from "next/link"
+
+import { CarCard } from "@/components/car/car-card"
 import { SearchHero } from "@/components/car/search-hero"
+import { Button } from "@/components/ui/button"
+import { autos } from "@/data/cars"
 
 export default function HomePage() {
   return (
@@ -38,6 +43,25 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="grid gap-6">
+        <div className="grid gap-2">
+          <h2 className="text-2xl font-semibold tracking-tight">Featured Cars</h2>
+          <p className="text-sm text-muted-foreground">
+            Explore some of our top picks.
+          </p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {autos.slice(0, 3).map((car) => (
+            <CarCard key={car.id} car={car} />
+          ))}
+        </div>
+        <div className="flex justify-center">
+          <Button asChild>
+            <Link href="/cars">View All Cars</Link>
+          </Button>
         </div>
       </section>
     </div>

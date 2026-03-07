@@ -29,9 +29,9 @@ import { buildCarsResultsHref } from "@/lib/car-filters"
 import { formatCurrency } from "@/lib/format"
 import type { CarFuel, CarTransmission } from "@/lib/cars"
 
-const MAKES = ["", "Audi", "BMW", "Ford", "Honda", "Kia", "Mazda", "Mercedes", "Tesla", "Toyota", "Volkswagen"]
-const FUEL = ["", "Gas", "Hybrid", "Electric", "Diesel"]
-const TRANS = ["", "Automatic", "Manual"]
+const MAKES = ["Audi", "BMW", "Ford", "Honda", "Kia", "Mazda", "Mercedes", "Tesla", "Toyota", "Volkswagen"]
+const FUEL = ["Gas", "Hybrid", "Electric", "Diesel"]
+const TRANS = ["Automatic", "Manual"]
 
 function FiltersForm({ filters, onApply }: { filters: CarFilters; onApply: (next: CarFilters) => void }) {
   const [q, setQ] = React.useState(filters.q ?? "")
@@ -75,12 +75,12 @@ function FiltersForm({ filters, onApply }: { filters: CarFilters; onApply: (next
         </div>
         <div className="grid gap-1.5">
           <Label>Make</Label>
-          <Select value={make} onValueChange={setMake}>
+          <Select value={make} onValueChange={(v) => setMake(v === "any-make" ? "" : v)}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Any" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Any</SelectItem>
+              <SelectItem value="any-make">Any</SelectItem>
               {MAKES.filter(Boolean).map((m) => (
                 <SelectItem key={m} value={m}>
                   {m}
@@ -91,12 +91,12 @@ function FiltersForm({ filters, onApply }: { filters: CarFilters; onApply: (next
         </div>
         <div className="grid gap-1.5">
           <Label>Fuel</Label>
-          <Select value={fuel} onValueChange={(v) => setFuel(v as CarFuel | "")}>
+          <Select value={fuel} onValueChange={(v) => setFuel((v === "any-fuel" ? "" : v) as CarFuel | "")}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Any" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Any</SelectItem>
+              <SelectItem value="any-fuel">Any</SelectItem>
               {FUEL.filter(Boolean).map((f) => (
                 <SelectItem key={f} value={f}>
                   {f}
@@ -109,13 +109,13 @@ function FiltersForm({ filters, onApply }: { filters: CarFilters; onApply: (next
           <Label>Transmission</Label>
           <Select
             value={transmission}
-            onValueChange={(v) => setTransmission(v as CarTransmission | "")}
+            onValueChange={(v) => setTransmission((v === "any-trans" ? "" : v) as CarTransmission | "")}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Any" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Any</SelectItem>
+              <SelectItem value="any-trans">Any</SelectItem>
               {TRANS.filter(Boolean).map((t) => (
                 <SelectItem key={t} value={t}>
                   {t}
