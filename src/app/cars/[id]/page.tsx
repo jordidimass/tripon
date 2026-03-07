@@ -23,27 +23,27 @@ export default function CarViewPage({ params }: { params: { id: string } }) {
             </Link>
             <span className="px-2">/</span>
             <span className="font-medium text-foreground">
-              {car.year} {car.make} {car.model}
+              {car.vehiculo.anio} {car.vehiculo.marca} {car.vehiculo.modelo}
             </span>
           </div>
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            {car.year} {car.make} {car.model} {car.trim}
+            {car.vehiculo.anio} {car.titulo}
           </h1>
           <div className="flex flex-wrap gap-2">
-            <Badge variant="secondary">{car.body}</Badge>
-            <Badge variant="outline">{car.fuel}</Badge>
-            <Badge variant="outline">{car.transmission}</Badge>
-            <Badge variant="outline">{car.location}</Badge>
+            <Badge variant="secondary">{car.vehiculo.tipo}</Badge>
+            <Badge variant="outline">{car.vehiculo.combustible}</Badge>
+            <Badge variant="outline">{car.vehiculo.transmision}</Badge>
+            <Badge variant="outline">{`${car.ubicacion.ciudad}, ${car.ubicacion.departamento}`}</Badge>
           </div>
         </div>
 
         <div className="text-right">
           <div className="text-xs text-muted-foreground">Price</div>
           <div className="text-2xl font-semibold tracking-tight">
-            {formatCurrency(car.price)}
+            {formatCurrency(car.precio.monto)}
           </div>
           <div className="text-xs text-muted-foreground">
-            {formatNumber(car.mileage)} mi
+            {formatNumber(car.vehiculo.kilometraje)} mi
           </div>
         </div>
       </div>
@@ -52,8 +52,8 @@ export default function CarViewPage({ params }: { params: { id: string } }) {
         <Card className="overflow-hidden">
           <div className="relative aspect-[16/9] w-full bg-muted">
             <Image
-              src={car.image}
-              alt={`${car.year} ${car.make} ${car.model}`}
+              src={car.foto_url}
+              alt={`${car.vehiculo.anio} ${car.vehiculo.marca} ${car.vehiculo.modelo}`}
               fill
               sizes="(max-width: 1024px) 100vw, 60vw"
               className="object-cover"
@@ -64,7 +64,7 @@ export default function CarViewPage({ params }: { params: { id: string } }) {
             <div className="grid gap-1">
               <div className="text-sm font-medium">Highlights</div>
               <p className="text-sm text-muted-foreground">
-                {car.highlights.join(" · ")}
+                {car.descripcion}
               </p>
             </div>
 
@@ -73,19 +73,19 @@ export default function CarViewPage({ params }: { params: { id: string } }) {
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div className="rounded-xl border bg-background/60 p-3">
                 <div className="text-xs text-muted-foreground">Color</div>
-                <div className="mt-0.5 font-medium">{car.color}</div>
+                <div className="mt-0.5 font-medium">{car.vehiculo.color}</div>
               </div>
               <div className="rounded-xl border bg-background/60 p-3">
                 <div className="text-xs text-muted-foreground">Drivetrain</div>
-                <div className="mt-0.5 font-medium">{car.drivetrain}</div>
+                <div className="mt-0.5 font-medium">{car.vehiculo.traccion}</div>
               </div>
               <div className="rounded-xl border bg-background/60 p-3">
                 <div className="text-xs text-muted-foreground">MPG</div>
-                <div className="mt-0.5 font-medium">{car.mpg}</div>
+                <div className="mt-0.5 font-medium">N/A</div>
               </div>
               <div className="rounded-xl border bg-background/60 p-3">
                 <div className="text-xs text-muted-foreground">VIN</div>
-                <div className="mt-0.5 font-medium">{car.vin}</div>
+                <div className="mt-0.5 font-medium">{car.identificacion.vin}</div>
               </div>
             </div>
           </CardContent>
@@ -99,23 +99,23 @@ export default function CarViewPage({ params }: { params: { id: string } }) {
             <div className="grid gap-1">
               <div className="text-xs text-muted-foreground">Deal</div>
               <div className="text-sm">
-                {car.dealLabel} - {car.dealNote}
+                {car.estado.recien_importado ? "Recien Importado" : "Usado"}
               </div>
             </div>
             <Separator />
             <div className="grid gap-2 text-sm">
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Price</span>
-                <span className="font-medium">{formatCurrency(car.price)}</span>
+                <span className="font-medium">{formatCurrency(car.precio.monto)}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Est. taxes/fees</span>
-                <span className="font-medium">{formatCurrency(car.estimatedFees)}</span>
+                <span className="font-medium">{formatCurrency(car.precio.precio_sugerido - car.precio.monto)}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Estimated total</span>
                 <span className="font-semibold">
-                  {formatCurrency(car.price + car.estimatedFees)}
+                  {formatCurrency(car.precio.precio_sugerido)}
                 </span>
               </div>
             </div>
