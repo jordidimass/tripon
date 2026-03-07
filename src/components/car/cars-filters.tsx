@@ -26,28 +26,35 @@ import {
 import { Slider } from "@/components/ui/slider"
 import type { CarFilters } from "@/lib/car-filters"
 import { buildCarsResultsHref } from "@/lib/car-filters"
-import { formatCurrency } from "@/lib/format"
-import type { CarFuel, CarTransmission } from "@/lib/cars"
+import { formatMoney } from "@/lib/format"
 
-const MAKES = ["Audi", "BMW", "Ford", "Honda", "Kia", "Mazda", "Mercedes", "Tesla", "Toyota", "Volkswagen"]
-const FUEL = ["Gas", "Hybrid", "Electric", "Diesel"]
-const TRANS = ["Automatic", "Manual"]
+const MAKES = [
+  "Toyota",
+  "Honda",
+  "Mazda",
+  "Kia",
+  "Hyundai",
+  "Nissan",
+  "Ford",
+  "Chevrolet",
+  "Mitsubishi",
+]
+const FUEL = ["Gasolina", "Diesel"]
+const TRANS = ["Automatica", "Mecanica", "CVT"]
 
 function FiltersForm({ filters, onApply }: { filters: CarFilters; onApply: (next: CarFilters) => void }) {
   const [q, setQ] = React.useState(filters.q ?? "")
   const [make, setMake] = React.useState(filters.make ?? "")
-  const [fuel, setFuel] = React.useState<CarFuel | "">(filters.fuel ?? "")
-  const [transmission, setTransmission] = React.useState<CarTransmission | "">(
-    filters.transmission ?? ""
-  )
+  const [fuel, setFuel] = React.useState(filters.fuel ?? "")
+  const [transmission, setTransmission] = React.useState(filters.transmission ?? "")
 
   const [onlyDeals, setOnlyDeals] = React.useState(Boolean(filters.onlyDeals))
 
   const priceMin = filters.priceMin ?? 0
-  const priceMax = filters.priceMax ?? 80000
+  const priceMax = filters.priceMax ?? 200000
   const [price, setPrice] = React.useState<[number, number]>([priceMin, priceMax])
 
-  const yearMin = filters.yearMin ?? 2016
+  const yearMin = filters.yearMin ?? 2015
   const [year, setYear] = React.useState<number>(yearMin)
 
   return (
@@ -91,7 +98,7 @@ function FiltersForm({ filters, onApply }: { filters: CarFilters; onApply: (next
         </div>
         <div className="grid gap-1.5">
           <Label>Fuel</Label>
-          <Select value={fuel} onValueChange={(v) => setFuel((v === "any-fuel" ? "" : v) as CarFuel | "")}>
+          <Select value={fuel} onValueChange={(v) => setFuel(v === "any-fuel" ? "" : v)}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Any" />
             </SelectTrigger>
@@ -107,10 +114,7 @@ function FiltersForm({ filters, onApply }: { filters: CarFilters; onApply: (next
         </div>
         <div className="grid gap-1.5">
           <Label>Transmission</Label>
-          <Select
-            value={transmission}
-            onValueChange={(v) => setTransmission((v === "any-trans" ? "" : v) as CarTransmission | "")}
-          >
+          <Select value={transmission} onValueChange={(v) => setTransmission(v === "any-trans" ? "" : v)}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Any" />
             </SelectTrigger>
@@ -133,15 +137,15 @@ function FiltersForm({ filters, onApply }: { filters: CarFilters; onApply: (next
           <div className="flex items-center justify-between">
             <Label>Price</Label>
             <div className="text-xs text-muted-foreground">
-              {formatCurrency(price[0])} - {formatCurrency(price[1])}
+              {formatMoney(price[0], "GTQ")} - {formatMoney(price[1], "GTQ")}
             </div>
           </div>
           <Slider
             value={price}
             onValueChange={(v) => setPrice(v as [number, number])}
             min={0}
-            max={120000}
-            step={500}
+            max={250000}
+            step={1000}
             className="py-2"
           />
         </div>
@@ -153,8 +157,8 @@ function FiltersForm({ filters, onApply }: { filters: CarFilters; onApply: (next
           </div>
           <Slider
             value={[year]}
-            onValueChange={(v) => setYear((v[0] ?? 2016) as number)}
-            min={2008}
+            onValueChange={(v) => setYear((v[0] ?? 2015) as number)}
+            min={2010}
             max={2026}
             step={1}
             className="py-2"
@@ -162,10 +166,10 @@ function FiltersForm({ filters, onApply }: { filters: CarFilters; onApply: (next
         </div>
 
         <div className="grid gap-2">
-          <Label>Deal</Label>
+          <Label>Inspeccion</Label>
           <label className="flex cursor-pointer items-center gap-2 rounded-xl border bg-background/60 p-3 text-sm">
             <Checkbox checked={onlyDeals} onCheckedChange={(v) => setOnlyDeals(Boolean(v))} />
-            <span>Only show highlighted deals</span>
+            <span>Solo inspeccionados (score 90+)</span>
           </label>
         </div>
       </div>

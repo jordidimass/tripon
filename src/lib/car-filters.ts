@@ -1,12 +1,10 @@
-import type { CarFuel, CarTransmission } from "@/lib/cars"
-
 type SearchParams = { [key: string]: string | string[] | undefined }
 
 export type CarFilters = {
   q?: string
   make?: string
-  fuel?: CarFuel
-  transmission?: CarTransmission
+  fuel?: string
+  transmission?: string
   priceMin?: number
   priceMax?: number
   yearMin?: number
@@ -33,22 +31,12 @@ function toBool(v: string | undefined) {
   return undefined
 }
 
-function asFuel(v: string | undefined): CarFuel | undefined {
-  if (v === "Gas" || v === "Hybrid" || v === "Electric" || v === "Diesel") return v
-  return undefined
-}
-
-function asTransmission(v: string | undefined): CarTransmission | undefined {
-  if (v === "Automatic" || v === "Manual") return v
-  return undefined
-}
-
 export function parseCarFilters(searchParams: SearchParams): CarFilters {
   const q = first(searchParams, "q")?.trim()
   const make = first(searchParams, "make")?.trim()
 
-  const fuel = asFuel(first(searchParams, "fuel"))
-  const transmission = asTransmission(first(searchParams, "transmission"))
+  const fuel = first(searchParams, "fuel")?.trim()
+  const transmission = first(searchParams, "transmission")?.trim()
 
   const priceMin = toInt(first(searchParams, "priceMin"))
   const priceMax = toInt(first(searchParams, "priceMax"))
@@ -58,8 +46,8 @@ export function parseCarFilters(searchParams: SearchParams): CarFilters {
   return {
     q: q || undefined,
     make: make || undefined,
-    fuel,
-    transmission,
+    fuel: fuel || undefined,
+    transmission: transmission || undefined,
     priceMin,
     priceMax,
     yearMin,

@@ -5,12 +5,11 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { getCarById } from "@/lib/cars"
-import { formatCurrency, formatNumber } from "@/lib/format"
+import { formatMoney, formatNumber } from "@/lib/format"
+import { getAutoById } from "@/lib/inventory"
 
-export default async function CarViewPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params
-  const car = getCarById(id)
+export default function CarViewPage({ params }: { params: { id: string } }) {
+  const car = getAutoById(params.id)
   if (!car) notFound()
   return (
     <div className="grid gap-6">
@@ -39,10 +38,10 @@ export default async function CarViewPage({ params }: { params: Promise<{ id: st
         <div className="text-right">
           <div className="text-xs text-muted-foreground">Price</div>
           <div className="text-2xl font-semibold tracking-tight">
-            {formatCurrency(car.precio.monto)}
+            {formatMoney(car.precio.monto, car.precio.moneda)}
           </div>
           <div className="text-xs text-muted-foreground">
-            {formatNumber(car.vehiculo.kilometraje)} mi
+            {formatNumber(car.vehiculo.kilometraje)} km
           </div>
         </div>
       </div>
@@ -78,9 +77,9 @@ export default async function CarViewPage({ params }: { params: Promise<{ id: st
                 <div className="mt-0.5 font-medium">{car.vehiculo.traccion}</div>
               </div>
               <div className="rounded-xl border bg-background/60 p-3">
-                <div className="text-xs text-muted-foreground">MPG</div>
-                <div className="mt-0.5 font-medium">N/A</div>
-              </div>
+              <div className="text-xs text-muted-foreground">MPG</div>
+              <div className="mt-0.5 font-medium">N/A</div>
+            </div>
               <div className="rounded-xl border bg-background/60 p-3">
                 <div className="text-xs text-muted-foreground">VIN</div>
                 <div className="mt-0.5 font-medium">{car.identificacion.vin}</div>
@@ -104,16 +103,18 @@ export default async function CarViewPage({ params }: { params: Promise<{ id: st
             <div className="grid gap-2 text-sm">
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Price</span>
-                <span className="font-medium">{formatCurrency(car.precio.monto)}</span>
+                <span className="font-medium">{formatMoney(car.precio.monto, car.precio.moneda)}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Est. taxes/fees</span>
-                <span className="font-medium">{formatCurrency(car.precio.precio_sugerido - car.precio.monto)}</span>
+                <span className="font-medium">
+                  {formatMoney(car.precio.precio_sugerido - car.precio.monto, car.precio.moneda)}
+                </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Estimated total</span>
                 <span className="font-semibold">
-                  {formatCurrency(car.precio.precio_sugerido)}
+                  {formatMoney(car.precio.precio_sugerido, car.precio.moneda)}
                 </span>
               </div>
             </div>
