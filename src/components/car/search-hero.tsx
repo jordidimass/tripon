@@ -2,96 +2,51 @@
 
 import * as React from "react"
 import { useRouter } from "next/navigation"
-
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+import { Sparkles, Mic, SlidersHorizontal } from "lucide-react"
 import { buildCarsResultsHref } from "@/lib/car-filters"
 
-const MAKES = [
-  "Any",
-  "Toyota",
-  "Honda",
-  "Mazda",
-  "Kia",
-  "Hyundai",
-  "Nissan",
-  "Ford",
-  "Chevrolet",
-  "Mitsubishi",
-]
-
-export function SearchHero() {
+export function SearchHero({
+  onFilterClick,
+  filterActive,
+}: {
+  onFilterClick?: () => void
+  filterActive?: boolean
+}) {
   const router = useRouter()
   const [query, setQuery] = React.useState("")
-  const [make, setMake] = React.useState("Any")
-  const [priceMax, setPriceMax] = React.useState("")
 
   return (
     <form
-      className="grid gap-3 rounded-2xl border bg-background/80 p-4 shadow-sm ring-1 ring-foreground/5 sm:p-5"
+      className="w-full"
       onSubmit={(e) => {
         e.preventDefault()
-        router.push(
-          buildCarsResultsHref({
-            q: query,
-            make: make === "Any" ? "" : make,
-            priceMax: priceMax ? Number.parseInt(priceMax, 10) : undefined,
-          })
-        )
+        router.push(buildCarsResultsHref({ q: query }))
       }}
     >
-      <div className="grid gap-2 sm:grid-cols-[1.2fr_220px_160px_auto]">
-        <Input
+      <div className="flex items-center gap-4 rounded-full border border-white/15 bg-white/5 px-6 py-5 shadow-[0_4px_40px_rgba(0,0,0,0.3)] backdrop-blur-2xl transition-colors focus-within:border-white/25 focus-within:bg-white/[0.08]">
+        <Sparkles className="size-6 shrink-0 text-white/70" />
+        <input
+          type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search: Civic, Model 3, SUV, AWD..."
-          className="h-10"
+          placeholder="Encuentra tu primer carro con confianza"
+          className="flex-1 bg-transparent text-base font-normal text-white placeholder:text-white/50 focus:outline-none sm:text-lg lg:text-2xl"
         />
-
-        <Select value={make} onValueChange={setMake}>
-          <SelectTrigger className="h-10 w-full">
-            <SelectValue placeholder="Make" />
-          </SelectTrigger>
-          <SelectContent>
-            {MAKES.map((m) => (
-              <SelectItem key={m} value={m}>
-                {m}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-
-        <Input
-          inputMode="numeric"
-          value={priceMax}
-          onChange={(e) => setPriceMax(e.target.value.replace(/[^0-9]/g, ""))}
-          placeholder="Max price"
-          className="h-10"
-        />
-
-        <Button className="h-10">Search</Button>
-      </div>
-
-      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
-        <div>Tip: use filters on the results page for year, mileage, fuel, and more.</div>
         <button
           type="button"
-          className="underline underline-offset-4 hover:text-foreground"
-          onClick={() => {
-            setQuery("")
-            setMake("Any")
-            setPriceMax("")
-          }}
+          className="shrink-0 rounded-full p-2 text-white/50 transition-colors hover:bg-white/10 hover:text-white/80"
         >
-          Clear
+          <Mic className="size-6" />
         </button>
+        {onFilterClick && (
+          <button
+            type="button"
+            onClick={onFilterClick}
+            className={`shrink-0 rounded-full p-2 transition-colors hover:bg-white/10 hover:text-white/80 ${filterActive ? "bg-white/10 text-white/80" : "text-white/50"}`}
+          >
+            <SlidersHorizontal className="size-6" />
+          </button>
+        )}
       </div>
     </form>
   )

@@ -145,11 +145,16 @@ export async function listAutos(filters: CarFilters) {
 
       if (filters.make && a.vehiculo.marca !== filters.make) return false
       if (filters.fuel && a.vehiculo.combustible !== filters.fuel) return false
-      if (filters.transmission && a.vehiculo.transmision !== filters.transmission) return false
+      if (filters.transmission) {
+        const t = filters.transmission
+        const arr = Array.isArray(t) ? t : [t]
+        if (arr.length > 0 && !arr.includes(a.vehiculo.transmision)) return false
+      }
 
       if (typeof filters.priceMin === "number" && a.precio.monto < filters.priceMin) return false
       if (typeof filters.priceMax === "number" && a.precio.monto > filters.priceMax) return false
       if (typeof filters.yearMin === "number" && a.vehiculo.anio < filters.yearMin) return false
+      if (typeof filters.yearMax === "number" && a.vehiculo.anio > filters.yearMax) return false
 
       if (filters.onlyDeals) {
         if (!a.inspeccion?.realizada) return false

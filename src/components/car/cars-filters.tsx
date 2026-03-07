@@ -46,7 +46,12 @@ function FiltersForm({ filters, onApply }: { filters: CarFilters; onApply: (next
   const [q, setQ] = React.useState(filters.q ?? "")
   const [make, setMake] = React.useState(filters.make ?? "")
   const [fuel, setFuel] = React.useState(filters.fuel ?? "")
-  const [transmission, setTransmission] = React.useState(filters.transmission ?? "")
+  const transVal = filters.transmission
+    ? Array.isArray(filters.transmission)
+      ? filters.transmission[0] ?? ""
+      : filters.transmission
+    : ""
+  const [transmission, setTransmission] = React.useState(transVal)
 
   const [onlyDeals, setOnlyDeals] = React.useState(Boolean(filters.onlyDeals))
 

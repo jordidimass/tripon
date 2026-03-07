@@ -4,10 +4,11 @@ export type CarFilters = {
   q?: string
   make?: string
   fuel?: string
-  transmission?: string
+  transmission?: string | string[]
   priceMin?: number
   priceMax?: number
   yearMin?: number
+  yearMax?: number
   onlyDeals?: boolean
 }
 
@@ -41,6 +42,7 @@ export function parseCarFilters(searchParams: SearchParams): CarFilters {
   const priceMin = toInt(first(searchParams, "priceMin"))
   const priceMax = toInt(first(searchParams, "priceMax"))
   const yearMin = toInt(first(searchParams, "yearMin"))
+  const yearMax = toInt(first(searchParams, "yearMax"))
   const onlyDeals = toBool(first(searchParams, "onlyDeals"))
 
   return {
@@ -51,6 +53,7 @@ export function parseCarFilters(searchParams: SearchParams): CarFilters {
     priceMin,
     priceMax,
     yearMin,
+    yearMax,
     onlyDeals,
   }
 }
@@ -67,10 +70,16 @@ export function buildCarsResultsHref(filters: CarFilters) {
   set("q", filters.q)
   set("make", filters.make)
   set("fuel", filters.fuel)
-  set("transmission", filters.transmission)
+  set(
+    "transmission",
+    Array.isArray(filters.transmission)
+      ? filters.transmission[0]
+      : filters.transmission
+  )
   set("priceMin", filters.priceMin)
   set("priceMax", filters.priceMax)
   set("yearMin", filters.yearMin)
+  set("yearMax", filters.yearMax)
   set("onlyDeals", filters.onlyDeals ? 1 : undefined)
 
   const qs = sp.toString()
