@@ -8,8 +8,9 @@ import { Separator } from "@/components/ui/separator"
 import { formatMoney, formatNumber } from "@/lib/format"
 import { getAutoById } from "@/lib/inventory"
 
-export default function CarViewPage({ params }: { params: { id: string } }) {
-  const car = getAutoById(params.id)
+export default async function CarViewPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const car = getAutoById(id)
   if (!car) notFound()
   return (
     <div className="grid gap-6">
