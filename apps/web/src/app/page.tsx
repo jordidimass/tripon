@@ -1,12 +1,14 @@
 import Link from "next/link"
 
-import { autos, getCatalogFacets } from "@tripon/catalog"
 import { CarCard } from "@/components/car/car-card"
 import { SearchHero } from "@/components/car/search-hero"
 import { Button } from "@/components/ui/button"
+import { listAutos } from "@/lib/inventory"
 
-export default function HomePage() {
-  const facets = getCatalogFacets()
+export const dynamic = "force-dynamic"
+
+export default async function HomePage() {
+  const autos = await listAutos({})
 
   return (
     <div className="grid gap-10">
@@ -23,7 +25,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <SearchHero makes={facets.makes} />
+          <SearchHero />
 
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border bg-background/70 p-4 ring-1 ring-foreground/5">

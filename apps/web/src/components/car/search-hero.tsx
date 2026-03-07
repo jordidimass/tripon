@@ -14,7 +14,20 @@ import {
 } from "@/components/ui/select"
 import { buildCarsResultsHref } from "@/lib/car-filters"
 
-export function SearchHero({ makes }: { makes: string[] }) {
+const MAKES = [
+  "Any",
+  "Toyota",
+  "Honda",
+  "Mazda",
+  "Kia",
+  "Hyundai",
+  "Nissan",
+  "Ford",
+  "Chevrolet",
+  "Mitsubishi",
+]
+
+export function SearchHero() {
   const router = useRouter()
   const [query, setQuery] = React.useState("")
   const [make, setMake] = React.useState("Any")
@@ -38,7 +51,7 @@ export function SearchHero({ makes }: { makes: string[] }) {
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Busca por keyword o lenguaje natural: SUV familiar automatica..."
+          placeholder="Search: Civic, Model 3, SUV, AWD..."
           className="h-10"
         />
 
@@ -47,7 +60,7 @@ export function SearchHero({ makes }: { makes: string[] }) {
             <SelectValue placeholder="Make" />
           </SelectTrigger>
           <SelectContent>
-            {["Any", ...makes].map((m) => (
+            {MAKES.map((m) => (
               <SelectItem key={m} value={m}>
                 {m}
               </SelectItem>
@@ -67,7 +80,7 @@ export function SearchHero({ makes }: { makes: string[] }) {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
-        <div>Tip: prueba consultas como &quot;pickup diesel para trabajo&quot; o combina lenguaje natural con filtros.</div>
+        <div>Tip: use filters on the results page for year, mileage, fuel, and more.</div>
         <button
           type="button"
           className="underline underline-offset-4 hover:text-foreground"

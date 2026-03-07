@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -7,12 +6,15 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
+import { AcquireCarButton } from "@/components/car/acquire-car-button"
 import { formatMoney, formatNumber } from "@/lib/format"
 
-export default function CarViewPage({ params }: { params: { id: string } }) {
-  const car = getAutoById(params.id)
-  if (!car) notFound()
+export const dynamic = "force-dynamic"
 
+export default async function CarViewPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const car = await getAutoById(id)
+  if (!car) notFound()
   return (
     <div className="grid gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -51,13 +53,12 @@ export default function CarViewPage({ params }: { params: { id: string } }) {
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
         <Card className="overflow-hidden">
           <div className="relative aspect-[16/9] w-full bg-muted">
-            <Image
+            <img
               src={car.foto_url}
               alt={`${car.vehiculo.anio} ${car.vehiculo.marca} ${car.vehiculo.modelo}`}
-              fill
-              sizes="(max-width: 1024px) 100vw, 60vw"
-              className="object-cover"
-              priority
+              width={1000}
+              height={562}
+              className="object-cover w-full h-full"
             />
           </div>
           <CardContent className="grid gap-4">
@@ -123,6 +124,7 @@ export default function CarViewPage({ params }: { params: { id: string } }) {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-2">
+            <AcquireCarButton carId={car.id} />
             <Button className="w-full">Request info</Button>
             <Button className="w-full" variant="outline">
               Schedule test drive

@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 
 import type { Auto } from "@tripon/catalog"
@@ -20,12 +19,12 @@ export function CarCard({ car }: { car: Auto }) {
   return (
     <Card className="overflow-hidden">
       <div className="relative aspect-[16/10] w-full bg-muted">
-        <Image
+        <img
           src={car.foto_url || "/cars/tesla-model3.svg"}
           alt={title}
-          fill
-          sizes="(max-width: 1024px) 100vw, 33vw"
-          className="object-cover"
+          width={640}
+          height={400}
+          className="h-full w-full object-cover"
         />
         <div className="absolute left-3 top-3 flex gap-2">
           <Badge
