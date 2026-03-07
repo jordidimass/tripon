@@ -1,52 +1,31 @@
+import Image from "next/image"
 import Link from "next/link"
-import { cookies } from "next/headers"
+import { Suspense } from "react"
 
 import { AuthControls } from "@/components/auth/auth-controls"
-import { decodeSession, SESSION_COOKIE } from "@/lib/auth"
-import { Button } from "@/components/ui/button"
+import { HeaderSearch } from "@/components/car/header-search"
 
-export async function SiteHeader() {
-  const cookieStore = await cookies()
-  const session = decodeSession(cookieStore.get(SESSION_COOKIE)?.value)
-  const isLoggedIn = Boolean(session)
-  const isAdmin = session?.role === "admin"
-
+export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/70 backdrop-blur supports-backdrop-filter:bg-background/60">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-6">
-          <Link href="/" className="inline-flex items-center gap-2">
-            <span className="grid size-8 place-items-center rounded-xl border bg-card text-sm font-semibold tracking-tight">
-              T
-            </span>
-            <span className="text-sm font-semibold tracking-tight">Tripon</span>
-          </Link>
+    <header className="sticky top-0 z-50 bg-black/60 backdrop-blur-xl">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-3 px-4 sm:h-[72px] sm:gap-5 sm:px-6 lg:px-8">
+        <Link href="/" className="inline-flex shrink-0 items-center">
+          <Image
+            src="/logo.svg"
+            alt="Tripon"
+            width={140}
+            height={42}
+            className="h-8 w-auto sm:h-9"
+          />
+        </Link>
 
-          <nav className="hidden items-center gap-1 sm:flex">
-            {isLoggedIn ? (
-              <>
-                <Button asChild variant="ghost" size="sm">
-                  <Link href="/cars">Browse</Link>
-                </Button>
-                <Button asChild variant="ghost" size="sm">
-                  <Link href="/perfil">Perfil</Link>
-                </Button>
-                {isAdmin ? (
-                  <Button asChild variant="ghost" size="sm">
-                    <Link href="/admin/autos">Admin</Link>
-                  </Button>
-                ) : null}
-              </>
-            ) : null}
-          </nav>
+        <div className="min-w-0 flex-1">
+          <Suspense>
+            <HeaderSearch />
+          </Suspense>
         </div>
 
-        <div className="flex items-center gap-2">
-          {isLoggedIn ? (
-            <Button asChild variant="outline" size="sm">
-              <Link href="/cars">Search inventory</Link>
-            </Button>
-          ) : null}
+        <div className="flex shrink-0 items-center">
           <AuthControls />
         </div>
       </div>

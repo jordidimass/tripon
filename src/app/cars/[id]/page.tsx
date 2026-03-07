@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Sparkles, Check } from "lucide-react"
 import { AcquireCarButton } from "@/components/car/acquire-car-button"
@@ -106,16 +105,7 @@ export default async function CarViewPage({
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(900px_circle_at_10%_0%,rgba(255,255,255,0.07),transparent_45%),radial-gradient(800px_circle_at_95%_0%,rgba(126,91,255,0.2),transparent_42%)]" />
       {/* Hero */}
       <div className="relative overflow-hidden bg-gradient-to-b from-white/6 to-transparent px-4 pb-8 pt-6 sm:px-6 lg:px-8">
-        <Link href="/" className="absolute right-4 top-6 z-10 sm:right-6 lg:right-8">
-          <img
-            src="/logo.svg"
-            alt="Tripon"
-            className="h-12 w-auto sm:h-[57px]"
-            draggable={false}
-          />
-        </Link>
-
-        <div className="mx-auto flex max-w-6xl items-center justify-center pt-8">
+        <div className="mx-auto flex max-w-6xl items-center justify-center">
           <img
             src={car.foto_url}
             alt={`${car.vehiculo.marca} ${car.vehiculo.modelo} ${car.vehiculo.anio}`}

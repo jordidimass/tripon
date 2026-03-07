@@ -1,7 +1,6 @@
 import Link from "next/link"
 
 import { CarCard } from "@/components/car/car-card"
-import { SearchHero } from "@/components/car/search-hero"
 import { Button } from "@/components/ui/button"
 import { listAutos } from "@/lib/inventory"
 
@@ -25,8 +24,6 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <SearchHero />
-
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border bg-background/70 p-4 ring-1 ring-foreground/5">
               <div className="text-sm font-medium">Transparent pricing</div>
@@ -46,6 +43,15 @@ export default async function HomePage() {
                 Save time with curated inventory.
               </div>
             </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <Button asChild>
+              <Link href="/cars">Browse inventory</Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/cars?onlyDeals=1">See inspected deals</Link>
+            </Button>
           </div>
         </div>
       </section>
