@@ -1,5 +1,6 @@
 import { CarsFiltersShell } from "@/components/car/cars-filters-shell"
 import { CarCard } from "@/components/car/car-card"
+import { getCatalogFacets } from "@tripon/catalog"
 import { parseCarFilters } from "@/lib/car-filters"
 import { listAutos } from "@/lib/inventory"
 
@@ -15,6 +16,7 @@ export default async function CarsResultsPage({
   const resolvedSearchParams = await searchParams
   const filters = parseCarFilters(resolvedSearchParams)
   const cars = await listAutos(filters)
+  const makes = getCatalogFacets().makes
 
   return (
     <div className="grid gap-6">
@@ -25,7 +27,7 @@ export default async function CarsResultsPage({
         </p>
       </div>
 
-      <CarsFiltersShell filters={filters} />
+      <CarsFiltersShell filters={filters} makes={makes} />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {cars.map((car) => (
