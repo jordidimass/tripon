@@ -6,17 +6,11 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { appendPurchase } from "@/lib/client-purchases"
 import { parseJsonSafe } from "@/lib/http-client"
 
-type Props = {
-  username: string
-  carId: number
-  amount: number
-  currency: string
-}
+type Props = { carId: number }
 
-export function FakePaymentForm({ username, carId, amount, currency }: Props) {
+export function FakePaymentForm({ carId }: Props) {
   const router = useRouter()
   const [holder, setHolder] = useState("")
   const [card, setCard] = useState("")
@@ -46,14 +40,6 @@ export function FakePaymentForm({ username, carId, amount, currency }: Props) {
       if (!purchaseRes.ok) {
         throw new Error(purchaseData?.error ?? "No se pudo completar la compra.")
       }
-
-      appendPurchase({
-        username,
-        carId,
-        amount,
-        currency,
-        purchasedAt: new Date().toISOString(),
-      })
 
       router.push("/perfil")
       router.refresh()

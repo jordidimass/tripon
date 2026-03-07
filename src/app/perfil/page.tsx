@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { Auto } from "@/data/cars"
 import { formatMoney } from "@/lib/format"
 import { parseJsonSafe } from "@/lib/http-client"
-import { readPurchases, type PurchaseRecord } from "@/lib/client-purchases"
+import type { PurchaseRecord } from "@/lib/purchases-store"
 
 type SessionUser = {
   username: string
@@ -38,7 +38,15 @@ export default function ProfilePage() {
           return
         }
 
-        const userPurchases = readPurchases().filter((p) => p.username === currentUser.username)
+        const purchasesRes = await fetch("/api/purchases", { cache: "no-store" })
+        const purchasesData = await parseJsonSafe<{ purchases?: PurchaseRecord[]; error?: string }>(
+          purchasesRes
+        )
+        if (!purchasesRes.ok) {
+          throw new Error(purchasesData?.error ?? "No se pudo cargar compras.")
+        }
+
+        const userPurchases = purchasesData?.purchases ?? []
         setPurchases(userPurchases)
 
         if (userPurchases.length === 0) {

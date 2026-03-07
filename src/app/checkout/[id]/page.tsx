@@ -45,10 +45,7 @@ export default async function CheckoutPage({ params }: { params: Promise<{ id: s
           </div>
 
           <FakePaymentForm
-            username={session.username}
             carId={car.id}
-            amount={car.precio.monto}
-            currency={car.precio.moneda}
           />
         </CardContent>
       </Card>
