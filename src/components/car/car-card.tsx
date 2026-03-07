@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatCurrency, formatNumber } from "@/lib/format";
 
@@ -72,7 +71,7 @@ export function CarCard({ car }: { car: Car }) {
   return (
     <Card className="overflow-hidden">
       <div className="relative aspect-[16/10] w-full bg-muted">
-        <Image
+        <img
           src={car.foto_url}
           alt={`${car.vehiculo.anio} ${car.vehiculo.marca} ${car.vehiculo.modelo}`}
           width={400}
