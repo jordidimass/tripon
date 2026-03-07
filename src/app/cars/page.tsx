@@ -1,7 +1,7 @@
 import { CarsFiltersShell } from "@/components/car/cars-filters-shell"
 import { CarCard } from "@/components/car/car-card"
-import { autos } from "@/data/cars"
 import { parseCarFilters } from "@/lib/car-filters"
+import { listAutos } from "@/lib/inventory"
 
 type SearchParams = { [key: string]: string | string[] | undefined }
 
@@ -11,7 +11,7 @@ export default function CarsResultsPage({
   searchParams: SearchParams
 }) {
   const filters = parseCarFilters(searchParams)
-  const cars = autos
+  const cars = listAutos(filters)
 
   return (
     <div className="grid gap-6">
